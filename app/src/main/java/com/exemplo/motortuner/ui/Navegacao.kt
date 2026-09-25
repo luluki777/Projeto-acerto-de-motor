@@ -39,7 +39,7 @@ fun AppMotorTuner() {
         composable(Rotas.IGNICAO) { TelaIgnicao(nav) }
         composable(Rotas.DESEMPENHO) { TelaDesempenho(nav) }
         composable(Rotas.TRANSMISSAO) { TelaTransmissao(nav) }
-        composable(Rotas.PROJETOS) { TelaPlaceholder(nav, "Projetos", "Etapa 5: salvar, duplicar, comparar.") }
-        composable(Rotas.CONFIG) { TelaPlaceholder(nav, "Configurações", "Etapa 5: casas decimais, unidades.") }
+        composable(Rotas.PROJETOS) { TelaProjetos(nav) }
+        composable(Rotas.CONFIG) { TelaConfig(nav) }
     }
 }
