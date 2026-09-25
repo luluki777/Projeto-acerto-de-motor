@@ -104,4 +104,82 @@ fun TelaEscape(nav: NavController) {
                 )
             }, modifier = Modifier.fillMaxWidth()) {
                 Icon(Icons.Filled.Calculate, contentDescription = null)
-                Spacer(
+                Spacer(Modifier.width(8.dp))
+                Text("Calcular")
+            }
+
+            resultado?.let { r ->
+                Card(Modifier.fillMaxWidth()) {
+                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("Diâmetro sugerido do escape", fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+                            AssistChip(onClick = {}, label = { Text("ESTIMATIVA") })
+                        }
+                        Text("%.1f mm".format(r.diametroSugerido).replace(".", ","),
+                            style = MaterialTheme.typography.headlineMedium)
+                        Text("Faixa: %.1f a %.1f mm".format(r.diametroMin, r.diametroMax).replace(".", ","))
+                        Text("Área da seção: %.0f mm²".format(r.areaSugerida))
+                        Spacer(Modifier.height(6.dp))
+                        Text("Fórmula: D ≈ √(Potência_hp) × k, k = 1,25 (rua) a 1,45 (esportivo)",
+                            style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+
+                r.velocidadeAtual?.let { va ->
+                    Card(Modifier.fillMaxWidth()) {
+                        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text("Velocidade no escape atual", fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+                                AssistChip(onClick = {}, label = { Text("ESTIMATIVA") })
+                            }
+                            Text("%.1f m/s".format(va).replace(".", ","),
+                                style = MaterialTheme.typography.headlineMedium)
+                            Spacer(Modifier.height(6.dp))
+                            Text("Faixa comum: 60 a 100 m/s (rua), 100 a 130 m/s (esportivo)",
+                                style = MaterialTheme.typography.bodySmall)
+                            Text("Cálculo a frio — gases reais estão mais quentes e mais rápidos.",
+                                style = MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+
+                Card(Modifier.fillMaxWidth()) {
+                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text("Aviso", fontWeight = FontWeight.SemiBold)
+                        Text(
+                            "O dimensionamento do escape depende também de cabeçote, comando, " +
+                            "potência real, formato do coletor, presença de catalisador e aplicação. " +
+                            "Use este valor como ponto de partida, não como valor definitivo.",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text("Cilindrada total usada: %.2f cc"
+                            .format(r.cilindradaTotal).replace(".", ","),
+                            style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+        }
+    }
+}
+
+data class ResultadoEscape(
+    val cilindradaTotal: Double,
+    val diametroSugerido: Double,
+    val diametroMin: Double,
+    val diametroMax: Double,
+    val velocidadeAtual: Double?,
+    val areaSugerida: Double
+)
+
+@Composable
+private fun Campo(rotulo: String, valor: String, onMudar: (String) -> Unit) {
+    OutlinedTextField(
+        value = valor, onValueChange = onMudar, label = { Text(rotulo) },
+        singleLine = true,
+        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+            keyboardType = androidx.compose.ui.text.input.KeyboardType.Decimal
+        ),
+        modifier = Modifier.fillMaxWidth()
+    )
+}
