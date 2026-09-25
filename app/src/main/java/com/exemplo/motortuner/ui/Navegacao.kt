@@ -35,10 +35,10 @@ fun AppMotorTuner() {
         composable(Rotas.INJECAO) { TelaInjecao(nav) }
         composable(Rotas.ADMISSAO) { TelaAdmissao(nav) }
         composable(Rotas.ESCAPE) { TelaEscape(nav) }
-        composable(Rotas.COMANDO) { TelaPlaceholder(nav, "Comando", "Etapa 4: duração, levante, LSA, overlap.") }
-        composable(Rotas.IGNICAO) { TelaPlaceholder(nav, "Ignição", "Etapa 4: curva de avanço editável.") }
-        composable(Rotas.DESEMPENHO) { TelaPlaceholder(nav, "Desempenho", "Etapa 4: BMEP, potência específica, gráficos.") }
-        composable(Rotas.TRANSMISSAO) { TelaPlaceholder(nav, "Transmissão", "Etapa 4: velocidade por marcha.") }
+        composable(Rotas.COMANDO) { TelaComando(nav) }
+        composable(Rotas.IGNICAO) { TelaIgnicao(nav) }
+        composable(Rotas.DESEMPENHO) { TelaDesempenho(nav) }
+        composable(Rotas.TRANSMISSAO) { TelaTransmissao(nav) }
         composable(Rotas.PROJETOS) { TelaPlaceholder(nav, "Projetos", "Etapa 5: salvar, duplicar, comparar.") }
         composable(Rotas.CONFIG) { TelaPlaceholder(nav, "Configurações", "Etapa 5: casas decimais, unidades.") }
     }
