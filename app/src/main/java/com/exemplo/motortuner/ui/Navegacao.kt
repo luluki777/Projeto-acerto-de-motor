@@ -12,6 +12,7 @@ object Rotas {
     const val COMPRESSAO = "compressao"
     const val SQUISH = "squish"
     const val ALIMENTACAO = "alimentacao"
+    const val INJECAO = "injecao"
     const val ADMISSAO = "admissao"
     const val ESCAPE = "escape"
     const val COMANDO = "comando"
@@ -31,8 +32,9 @@ fun AppMotorTuner() {
         composable(Rotas.COMPRESSAO) { TelaCompressao(nav) }
         composable(Rotas.SQUISH) { TelaSquish(nav) }
         composable(Rotas.ALIMENTACAO) { TelaAlimentacao(nav) }
-        composable(Rotas.ADMISSAO) { TelaPlaceholder(nav, "Admissão", "Etapa 3: duto, coletor e velocidade de fluxo.") }
-        composable(Rotas.ESCAPE) { TelaPlaceholder(nav, "Escape", "Etapa 3: dimensionamento de escape.") }
+        composable(Rotas.INJECAO) { TelaInjecao(nav) }
+        composable(Rotas.ADMISSAO) { TelaAdmissao(nav) }
+        composable(Rotas.ESCAPE) { TelaEscape(nav) }
         composable(Rotas.COMANDO) { TelaPlaceholder(nav, "Comando", "Etapa 4: duração, levante, LSA, overlap.") }
         composable(Rotas.IGNICAO) { TelaPlaceholder(nav, "Ignição", "Etapa 4: curva de avanço editável.") }
         composable(Rotas.DESEMPENHO) { TelaPlaceholder(nav, "Desempenho", "Etapa 4: BMEP, potência específica, gráficos.") }
